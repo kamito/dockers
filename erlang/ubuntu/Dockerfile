@@ -1,6 +1,7 @@
 # from ubuntu image
 # via https://index.docker.io/_/ubuntu/
 FROM ubuntu
+MAINTAINER Shinichirow KAMITO
 
 RUN apt-get -y update
 RUN apt-get -y install curl wget autoconf automake autotools-dev \
@@ -16,5 +17,8 @@ RUN curl -OL http://www.erlang.org/download/otp_src_R16B03-1.tar.gz && \
     --with-dynamic-trace=systemtap --without-javac --enable-native-libs --disable-sctp && \
     make && \
     make install && \
-    echo "\n\nPATH=/opt/erlang/R16B03-1/bin:$PATH" >> /etc/profile
-    source /etc/profile
+    echo "\n\nPATH=/opt/erlang/R16B03-1/bin:$PATH" >> /etc/profile && \
+    source /etc/profile && \
+    cd
+
+CMD ["erl"]
